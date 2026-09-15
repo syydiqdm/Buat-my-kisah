@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Untuk Kamu ♡</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================
+       VARIABLES
+    ========================== */
+        
+         :root {
+            --bg: #fff8fb;
+            --bg-2: #fff0f5;
+            --text: #30252a;
+            --muted: #7e6e74;
+            --accent: #e8799d;
+            --accent-2: #c95f85;
+            --glass: rgba(255, 255, 255, .62);
+            --border: rgba(190, 110, 140, .18);
+            --shadow: 0 25px 70px rgba(110, 45, 70, .14);
+        }
+        
+        @media (prefers-color-scheme: dark) {
+             :root {
+                --bg: #171316;
+                --bg-2: #24191e;
+                --text: #f8edf1;
+                --muted: #bdaeb3;
+                --accent: #f08caf;
+                --accent-2: #ffb0c9;
+                --glass: rgba(39, 29, 34, .65);
+                --border: rgba(255, 180, 205, .13);
+                --shadow: 0 25px 70px rgba(0, 0, 0, .38);
+            }
+        }
+        /* =========================
+       RESET
+    ========================== */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: var(--text);
+            font-family: "DM Sans", sans-serif;
+            background: radial-gradient( circle at 10% 10%, rgba(232, 121, 157, .16), transparent 28%), radial-gradient( circle at 90% 80%, rgba(201, 95, 133, .13), transparent 30%), linear-gradient( 135deg, var(--bg), var(--bg-2));
+        }
+        /* =========================
+       BACKGROUND
+    ========================== */
+        
+        #particles {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+        
+        .noise {
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+            pointer-events: none;
+            opacity: .025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+        }
+        /* =========================
+       NAVBAR
+    ========================== */
+        
+        nav {
+            position: fixed;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(920px, 90%);
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: var(--shadow);
+            z-index: 10;
+        }
+        
+        .brand {
+            font-family: "Playfair Display", serif;
+            font-size: 20px;
+        }
+        
+        .nav-button {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            transition: .3s ease;
+        }
+        
+        .nav-button:hover {
+            transform: scale(1.08) rotate(8deg);
+            background: rgba(232, 121, 157, .12);
+        }
+        /* =========================
+       OPENING SCREEN
+    ========================== */
+        
+        #opening {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            background: radial-gradient( circle at 20% 20%, rgba(232, 121, 157, .16), transparent 30%), radial-gradient( circle at 80% 80%, rgba(201, 95, 133, .14), transparent 30%), linear-gradient( 135deg, var(--bg), var(--bg-2));
+            transition: opacity .8s ease, visibility .8s ease;
+        }
+        
+        #opening.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        
+        .opening-box {
+            width: min(550px, 100%);
+            padding: 50px 30px;
+            text-align: center;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 35px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            animation: openingIn 1s ease;
+        }
+        
+        .small-heart {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 25px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(232, 121, 157, .12);
+            border: 1px solid var(--border);
+            font-size: 32px;
+            animation: heartPulse 2s infinite;
+        }
+        
+        .opening-box .mini {
+            color: var(--accent);
+            font-size: 12px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+        
+        .opening-box h1 {
+            margin: 18px 0;
+            font: 600 clamp(42px, 8vw, 68px)/1.05 "Playfair Display", serif;
+            letter-spacing: -.04em;
+        }
+        
+        .opening-box p {
+            max-width: 420px;
+            margin: auto;
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+        
+        .open-button {
+            margin-top: 30px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 999px;
+            color: white;
+            background: var(--accent);
+            font: 600 14px "DM Sans";
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(201, 95, 133, .25);
+            transition: .3s ease;
+        }
+        
+        .open-button:hover {
+            transform: translateY(-4px) scale(1.03);
+            background: var(--accent-2);
+        }
+        /* =========================
+       CONTENT
+    ========================== */
+        
+        .container {
+            width: min(1080px, 92%);
+            margin: auto;
+        }
+        
+        main {
+            padding-top: 90px;
+        }
+        
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+        }
+        /* =========================
+       HERO
+    ========================== */
+        
+        .hero {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 15px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: var(--glass);
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            animation: fadeUp .9s ease both;
+        }
+        
+        .hero h2 {
+            max-width: 850px;
+            margin: 25px auto 15px;
+            font: 600 clamp(48px, 9vw, 92px)/.98 "Playfair Display", serif;
+            letter-spacing: -.05em;
+            animation: fadeUp .9s .1s ease both;
+        }
+        
+        .hero h2 span {
+            color: var(--accent);
+        }
+        
+        .hero-description {
+            max-width: 600px;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+            animation: fadeUp .9s .2s ease both;
+        }
+        /* =========================
+       PHOTO
+    ========================== */
+        
+        .photo-card {
+            width: min(420px, 88vw);
+            margin-top: 40px;
+            padding: 10px;
+            border-radius: 30px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transform: rotate(-1.5deg);
+            animation: fadeUp 1s .3s ease both, floating 5s ease-in-out infinite;
+        }
+        
+        .photo {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            border-radius: 22px;
+            background: linear-gradient( 135deg, rgba(232, 121, 157, .2), rgba(0, 0, 0, .05)), url(poto.jpg) center / cover;
+        }
+        
+        .photo::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient( to top, rgba(0, 0, 0, .38), transparent 55%);
+        }
+        
+        .photo-text {
+            position: absolute;
+            left: 20px;
+            bottom: 18px;
+            z-index: 2;
+            color: white;
+            font: italic 500 22px "Playfair Display", serif;
+        }
+        /* =========================
+       MESSAGE
+    ========================== */
+        
+        .message {
+            display: grid;
+            grid-template-columns: .9fr 1.1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .section-label {
+            margin-bottom: 12px;
+            color: var(--accent);
+            font-size: 12px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+        
+        h3 {
+            margin-bottom: 22px;
+            font: 600 clamp(38px, 6vw, 62px)/1.05 "Playfair Display", serif;
+        }
+        
+        .message-text p {
+            margin-bottom: 16px;
+            color: var(--muted);
+            line-height: 1.9;
+        }
+        
+        .quote {
+            position: relative;
+            padding: 45px 38px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+        }
+        
+        .quote::before {
+            content: "“";
+            position: absolute;
+            top: -18px;
+            left: 25px;
+            color: var(--accent);
+            font: 600 90px/1 "Playfair Display", serif;
+            opacity: .65;
+        }
+        
+        .quote p {
+            font: italic 500 clamp(24px, 3vw, 34px)/1.45 "Playfair Display", serif;
+        }
+        
+        .signature {
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+        /* =========================
+       REASONS
+    ========================== */
+        
+        .reasons {
+            display: block;
+        }
+        
+        .center {
+            max-width: 650px;
+            margin: 0 auto 45px;
+            text-align: center;
+        }
+        
+        .center p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        
+        .card {
+            padding: 30px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: .35s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-9px);
+            box-shadow: var(--shadow);
+        }
+        
+        .card-icon {
+            font-size: 29px;
+            margin-bottom: 18px;
+        }
+        
+        .card h4 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .card p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        /* =========================
+       FINAL
+    ========================== */
+        
+        .final {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .final-heart {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 25px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: rgba(232, 121, 157, .12);
+            border: 1px solid var(--border);
+            font-size: 40px;
+            animation: heartPulse 2.2s infinite;
+        }
+        
+        .final p {
+            max-width: 540px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+        
+        .love-button {
+            margin-top: 30px;
+            padding: 15px 24px;
+            border: 0;
+            border-radius: 999px;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+        }
+        
+        .love-button:hover {
+            transform: translateY(-4px);
+            background: var(--accent-2);
+        }
+        
+        footer {
+            padding: 30px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+        }
+        /* =========================
+       FLOATING HEART
+    ========================== */
+        
+        .heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            font-size: 20px;
+            animation: heartFloat 1.8s ease-out forwards;
+        }
+        /* =========================
+       TOAST
+    ========================== */
+        
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            transform: translate(-50%, 30px);
+            opacity: 0;
+            padding: 13px 19px;
+            background: var(--text);
+            color: var(--bg);
+            border-radius: 999px;
+            font-size: 13px;
+            pointer-events: none;
+            z-index: 200;
+            transition: .35s ease;
+        }
+        
+        .toast.show {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+        /* =========================
+       ANIMATIONS
+    ========================== */
+        
+        @keyframes openingIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes floating {
+            0%,
+            100% {
+                transform: rotate(-1.5deg) translateY(0);
+            }
+            50% {
+                transform: rotate(-1.5deg) translateY(-10px);
+            }
+        }
+        
+        @keyframes heartPulse {
+            50% {
+                transform: scale(1.08);
+                box-shadow: 0 0 0 15px rgba(232, 121, 157, .04);
+            }
+        }
+        
+        @keyframes heartFloat {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, 0) scale(.5) rotate(0);
+            }
+            15% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -150px) scale(1.4) rotate(20deg);
+            }
+        }
+        /* =========================
+       RESPONSIVE
+    ========================== */
+        
+        @media (max-width: 760px) {
+            nav {
+                top: 10px;
+            }
+            main {
+                padding-top: 70px;
+            }
+            section {
+                min-height: auto;
+                padding: 75px 0;
+            }
+            .hero {
+                min-height: 100vh;
+            }
+            .opening-box {
+                padding: 40px 22px;
+            }
+            .message {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            .quote {
+                padding: 35px 27px;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+       BACKGROUND
+  ========================== -->
+
+    <canvas id="particles"></canvas>
+
+    <div class="noise"></div>
+
+    <!-- =========================
+       OPENING
+  ========================== -->
+
+    <div id="opening">
+
+        <div class="opening-box">
+
+            <div class="small-heart">
+                ♡
+            </div>
+
+            <div class="mini">
+                just for you
+            </div>
+
+            <h1>
+                Ada sesuatu<br> untuk kamu…
+            </h1>
+
+            <p>
+                Aku bikin sesuatu yang sederhana. Nggak mewah, nggak berlebihan. Tapi dibuat dengan banyak rasa.
+            </p>
+
+            <button class="open-button" id="openButton">
+        Buka ♡
+      </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+       NAVBAR
+  ========================== -->
+
+    <nav>
+
+        <div class="brand">
+            Untuk Kamu ♡
+        </div>
+
+        <button class="nav-button" id="infoButton" aria-label="Informasi">
+      ✦
+    </button>
+
+    </nav>
+
+
+    <!-- =========================
+       MAIN
+  ========================== -->
+
+    <main>
+
+        <!-- HERO -->
+
+        <section class="hero container">
+
+            <span class="eyebrow">
+        ♡ a little place for us
+      </span>
+
+            <h2>
+                Kamu adalah
+                <span>bagian indah</span> dari ceritaku.
+            </h2>
+
+            <p class="hero-description">
+                Mungkin aku nggak selalu bisa menjelaskan seberapa berartinya kamu. Jadi, biarkan halaman kecil ini yang mengatakannya.
+            </p>
+
+
+            <!-- PHOTO -->
+
+            <div class="photo-card">
+
+                <div class="photo">
+
+                    <div class="photo-text">
+                        lopyuuuu Wafaaaaaa ♡
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MESSAGE -->
+
+        <section class="container">
+
+            <div class="message">
+
+                <div class="message-text">
+
+                    <div class="section-label">
+                        for my favorite person
+                    </div>
+
+                    <h3>
+                        Terima kasih<br> sudah hadir.
+                    </h3>
+
+                    <p>
+                        Aku mungkin bukan orang yang paling pandai menunjukkan perasaan. Tapi aku ingin kamu tahu, kehadiranmu punya tempat yang sangat spesial.
+                    </p>
+
+                    <p>
+                        Bersamamu, hal-hal kecil terasa lebih berarti. Obrolan sederhana, tawa kecil, bahkan diam bersama pun terasa nyaman.
+                    </p>
+
+                </div>
+
+
+                <div class="quote">
+
+                    <p>
+                        “Kalau dunia terasa terlalu ramai, semoga kita tetap menjadi tempat paling tenang untuk satu sama lain.”
+                    </p>
+
+                    <div class="signature">
+                        — dari seseorang yang kamu sayang ♡
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REASONS -->
+
+        <section class="container reasons">
+
+            <div class="center">
+
+                <div class="section-label">
+                    little things
+                </div>
+
+                <h3>
+                    Kenapa kamu spesial?
+                </h3>
+
+                <p>
+                    Bukan karena kamu sempurna, tapi karena bersamamu hal-hal sederhana terasa lebih indah.
+                </p>
+
+            </div>
+
+
+            <div class="cards">
+
+                <article class="card">
+
+                    <div class="card-icon">
+                        ☁️
+                    </div>
+
+                    <h4>
+                        Kamu bikin nyaman
+                    </h4>
+
+                    <p>
+                        Rasanya seperti pulang. Nggak perlu menjadi orang lain untuk bisa merasa diterima.
+                    </p>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="card-icon">
+                        🌷
+                    </div>
+
+                    <h4>
+                        Kamu bikin bahagia
+                    </h4>
+
+                    <p>
+                        Bahkan percakapan sederhana bisa membuat hari biasa terasa jauh lebih indah.
+                    </p>
+
+                </article>
+
+
+                <article class="card">
+
+                    <div class="card-icon">
+                        ✨
+                    </div>
+
+                    <h4>
+                        Kamu adalah kamu
+                    </h4>
+
+                    <p>
+                        Dan mungkin justru itu yang paling aku suka. Nggak perlu alasan rumit untuk menyayangimu.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINAL -->
+
+        <section class="final container">
+
+            <div class="final-heart">
+                ♡
+            </div>
+
+            <div class="section-label">
+                one last thing
+            </div>
+
+            <h3>
+                Untuk kamu, selalu.
+            </h3>
+
+            <p>
+                Kalau suatu hari kamu membuka website ini lagi, semoga kamu tetap ingat satu hal: ada seseorang yang sangat bersyukur pernah menemukanmu.
+            </p>
+
+            <button class="love-button" id="loveButton">
+        Kirim rasa sayang ♡
+      </button>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        Made with love, just for you ♡
+    </footer>
+
+
+    <div class="toast" id="toast">
+        Rasa sayangnya sudah terkirim ♡
+    </div>
+
+
+    <script>
+        /* =========================
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               OPEN WEBSITE
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ========================== */
+
+        const opening =
+            document.getElementById("opening");
+
+        const openButton =
+            document.getElementById("openButton");
+
+        openButton.addEventListener("click", () => {
+
+            opening.classList.add("hide");
+
+            // Scroll kembali ke atas
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+            // Ledakan hati kecil
+            for (let i = 0; i < 12; i++) {
+
+                setTimeout(() => {
+
+                    createHeart(
+                        window.innerWidth / 2 +
+                        (Math.random() - .5) * 220,
+
+                        window.innerHeight / 2 +
+                        (Math.random() - .5) * 100
+                    );
+
+                }, i * 70);
+
+            }
+
+        });
+
+
+        /* =========================
+           PARTICLES
+        ========================== */
+
+        const canvas =
+            document.getElementById("particles");
+
+        const ctx =
+            canvas.getContext("2d");
+
+        let particles = [];
+
+        function resizeCanvas() {
+
+            canvas.width =
+                window.innerWidth;
+
+            canvas.height =
+                window.innerHeight;
+
+            const amount =
+                window.innerWidth < 700 ?
+                28 :
+                55;
+
+            particles =
+                Array.from({
+                        length: amount
+                    },
+                    () => ({
+
+                        x: Math.random() *
+                            canvas.width,
+
+                        y: Math.random() *
+                            canvas.height,
+
+                        radius: Math.random() * 1.7 + .5,
+
+                        vx:
+                            (Math.random() - .5) * .25,
+
+                        vy:
+                            (Math.random() - .5) * .25
+
+                    })
+                );
+
+        }
+
+
+        function drawParticles() {
+
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+            const dark =
+                window.matchMedia(
+                    "(prefers-color-scheme: dark)"
+                ).matches;
+
+
+            const dotColor =
+                dark ?
+                "rgba(255,190,210,.42)" :
+                "rgba(170,80,110,.22)";
+
+
+            const lineColor =
+                dark ?
+                "rgba(255,190,210,.07)" :
+                "rgba(170,80,110,.06)";
+
+
+            particles.forEach(
+                (particle, index) => {
+
+                    particle.x +=
+                        particle.vx;
+
+                    particle.y +=
+                        particle.vy;
+
+
+                    if (
+                        particle.x < 0 ||
+                        particle.x > canvas.width
+                    ) {
+                        particle.vx *= -1;
+                    }
+
+
+                    if (
+                        particle.y < 0 ||
+                        particle.y > canvas.height
+                    ) {
+                        particle.vy *= -1;
+                    }
+
+
+                    ctx.beginPath();
+
+                    ctx.arc(
+                        particle.x,
+                        particle.y,
+                        particle.radius,
+                        0,
+                        Math.PI * 2
+                    );
+
+                    ctx.fillStyle =
+                        dotColor;
+
+                    ctx.fill();
+
+
+                    for (
+                        let j = index + 1; j < particles.length; j++
+                    ) {
+
+                        const other =
+                            particles[j];
+
+
+                        const distance =
+                            Math.hypot(
+                                particle.x - other.x,
+                                particle.y - other.y
+                            );
+
+
+                        if (distance < 110) {
+
+                            ctx.beginPath();
+
+                            ctx.moveTo(
+                                particle.x,
+                                particle.y
+                            );
+
+                            ctx.lineTo(
+                                other.x,
+                                other.y
+                            );
+
+                            ctx.strokeStyle =
+                                lineColor;
+
+                            ctx.lineWidth = .6;
+
+                            ctx.stroke();
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+            requestAnimationFrame(
+                drawParticles
+            );
+
+        }
+
+
+        resizeCanvas();
+
+        drawParticles();
+
+
+        window.addEventListener(
+            "resize",
+            resizeCanvas
+        );
+
+
+        /* =========================
+           HEART EFFECT
+        ========================== */
+
+        function createHeart(x, y) {
+
+            const heart =
+                document.createElement("div");
+
+            heart.className =
+                "heart";
+
+            const symbols = ["♡", "♥", "✦", "✨"];
+
+            heart.textContent =
+                symbols[
+                    Math.floor(
+                        Math.random() *
+                        symbols.length
+                    )
+                ];
+
+            heart.style.left =
+                x + "px";
+
+            heart.style.top =
+                y + "px";
+
+            heart.style.color =
+                "var(--accent)";
+
+            document.body.appendChild(
+                heart
+            );
+
+
+            setTimeout(() => {
+
+                heart.remove();
+
+            }, 1800);
+
+        }
+
+
+        /* =========================
+           CLICK ANYWHERE
+        ========================== */
+
+        document.addEventListener(
+            "click",
+            (event) => {
+
+                if (
+                    event.target.closest("button")
+                ) {
+                    return;
+                }
+
+                createHeart(
+                    event.clientX,
+                    event.clientY
+                );
+
+            }
+        );
+
+
+        /* =========================
+           LOVE BUTTON
+        ========================== */
+
+        const loveButton =
+            document.getElementById(
+                "loveButton"
+            );
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+
+        loveButton.addEventListener(
+            "click",
+            () => {
+
+                for (let i = 0; i < 18; i++) {
+
+                    setTimeout(() => {
+
+                        createHeart(
+
+                            window.innerWidth / 2 +
+                            (Math.random() - .5) * 260,
+
+                            window.innerHeight / 2 +
+                            (Math.random() - .5) * 120
+
+                        );
+
+                    }, i * 70);
+
+                }
+
+
+                toast.classList.add(
+                    "show"
+                );
+
+
+                setTimeout(() => {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                }, 2300);
+
+            }
+        );
+
+
+        /* =========================
+           INFO BUTTON
+        ========================== */
+
+        const infoButton =
+            document.getElementById(
+                "infoButton"
+            );
+
+
+        infoButton.addEventListener(
+            "click",
+            () => {
+
+                toast.textContent =
+                    "Mode mengikuti pengaturan perangkat kamu ✦";
+
+                toast.classList.add(
+                    "show"
+                );
+
+
+                setTimeout(() => {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                    toast.textContent =
+                        "Rasa sayangnya sudah terkirim ♡";
+
+                }, 2200);
+
+            }
+        );
+    </script>
+
+</body>
+
+</html>
